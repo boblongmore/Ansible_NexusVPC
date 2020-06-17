@@ -1,0 +1,23 @@
+---
+
+#- name: provision vlans for access switch
+#  ios_vlan:
+#    vlan_id: "{{ item }}"
+#    state: present
+#  loop:
+#    - 10
+#    - 20
+#    - 30
+
+- name: configure upstream ports
+  ios_config:
+    match: none
+    lines:
+      - switchport
+      - switchport mode trunk
+      - channel-group 10 mode active
+      - no shutdown
+    parents: "{{ item }}"
+  loop:
+    - interface TenGigabitEthernet1/1/1
+    - interface TenGigabitEthernet1/1/2

@@ -1,0 +1,68 @@
+---
+
+- name: set POC architecture back to beginning state
+  hosts: Nexus7k
+  tasks:
+    - name: remove port-channels
+      nxos_config: 
+        lines:
+          - no interface po900
+          - no interface po10
+ 
+    - name: remove loopback interfaces
+      nxos_config:
+        lines:
+          - no interface Loopback1
+          - no interface Loopback2
+
+    - name: disable features
+      nxos_feature:
+        feature: "{{ item }}"
+        state: disabled
+      loop:
+        - udld
+        - vpc
+        - lacp
+        - eigrp
+        - hsrp
+        - interface-vlan
+        - pim
+        - bgp
+        - msdp
+    
+
+    - name: default interface e1/1
+      nxos_config:
+        lines:
+            - default interface Ethernet1/1
+
+    - name: default interface e1/2
+      nxos_config:
+        lines:
+            - default interface Ethernet1/2
+
+    - name: default interface e10/1
+      nxos_config:
+        lines:
+            - default interface Ethernet10/1
+
+    - name: default interface e10/9
+      nxos_config:
+        lines:
+            - default interface Ethernet10/9
+
+    - name: remove VLANs for vpc scenario
+      nxos_vlan:
+        vlan_range: 10, 20, 30
+        state: absent
+
+- name: set access-switch to default state
+  hosts: catalyst
+  tasks: 
+    - name: default uplink ports
+      ios_config:
+        lines:
+          - default interface Te1/1/1
+          - default interface Te1/1/2
+          - no interface po10
+    

@@ -1,0 +1,22 @@
+---
+
+- name: prepare vpc peerlink member ports
+  nxos_config:
+    lines:
+      - switchport
+      - switchport mode trunk
+      - channel-group 900 mode active
+      - no shutdown
+    parents: "{{item}}"
+  loop:
+    - interface Ethernet10/1
+    - interface Ethernet10/9
+
+- name: activate vpc peerlink
+  nxos_config:
+    lines: 
+      - vpc peer-link
+      - switchport mode trunk
+      - no shutdown
+   
+    parents: interface po900

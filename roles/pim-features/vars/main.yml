@@ -1,0 +1,9 @@
+---
+
+#list of features to install
+feature_list:
+  - eigrp
+  - udld
+  - pim
+  #- msdp
+  - interface-vlan

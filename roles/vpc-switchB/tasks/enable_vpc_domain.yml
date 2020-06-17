@@ -1,0 +1,12 @@
+---
+
+- name: enable VPC domain
+
+  nxos_vpc:
+    domain: 900
+    role_priority: "{{ priority }}"
+    system_priority: 2000
+    pkl_dest: "{{ peer_dst }}"
+    pkl_src: "{{ peer_src }}"
+    peer_gw: true
+    auto_recovery: true

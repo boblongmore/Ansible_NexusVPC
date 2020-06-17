@@ -1,0 +1,38 @@
+---
+
+- name: configure anycast loopback interface
+  nxos_interface:
+    name: Loopback2
+    admin_state: up
+
+- name: assign anycast loopback ip address
+  nxos_config:
+    lines:
+      - ip address 192.168.200.1/32
+      - ip router eigrp 100
+    parents:
+      - interface Loopback2
+
+- name: assign pim to interfaces
+  nxos_config:
+    lines:
+      - ip pim sparse-mode
+    parents: "{{ item }}"
+  loop:
+    - interface Ethernet1/1
+    - interface Vlan10
+    - interface Vlan20
+    - interface Vlan30
+  #  - interface Lo1
+  #  - interface Lo2
+
+- name: configure PIM RP
+  nxos_pim_rp_address:
+    rp_address: 192.168.200.1
+    state: present
+
+- name: configure PIM RP anycast
+  nxos_config:
+    lines:
+      - ip pim anycast-rp 192.168.200.1 192.168.100.1
+      - ip pim anycast-rp 192.168.200.1 192.168.100.2

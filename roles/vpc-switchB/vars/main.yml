@@ -1,0 +1,22 @@
+---
+
+# vpc variables
+priority: 100
+peer_src: 10.255.40.36
+peer_dst: 10.255.40.32
+
+
+#l3 address for VPC l3 link
+l3_vpc_ip: 10.200.1.2/30
+
+#l3 address for ptp to access switch
+ptp_ip: 10.1.1.5/30
+
+#l3 and HSRP addresses for vlan 10
+vl10_vip: 192.168.10.1
+
+#l3 and HSRP addresses for vlan 20
+vl20_vip: 192.168.20.1
+
+#l3 and HSRP addresses for vlan 20
+vl30_vip: 192.168.30.1

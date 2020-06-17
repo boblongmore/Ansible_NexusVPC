@@ -1,0 +1,28 @@
+---
+- name: Provision VPC Architecture
+  hosts: Nexus7k
+  roles:
+    - vpc-features
+    - vpc-vlans
+
+- name: provision Nexus 7k switch A
+  hosts: switchA
+  roles:
+    - vpc-switchA
+
+- name: provision Nexus 7k switch B
+  hosts: switchB
+  roles:
+    - vpc-switchB
+
+- name: provision Nexus7k vpc peer-link
+  hosts: Nexus7k
+  roles:
+    - vpc
+    - vpc-eigrp
+    - vpc-pim
+
+- name: provision access switch
+  hosts: catalyst
+  roles:
+    - vpc-access-switch

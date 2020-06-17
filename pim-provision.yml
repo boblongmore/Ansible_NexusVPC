@@ -1,0 +1,27 @@
+---
+- name: Provision MSDP Architecture
+  hosts: Nexus7k
+  roles:
+    - pim-features
+    - pim-vlans
+
+- name: provision Nexus 7k switch A
+  hosts: switchA
+  roles:
+    - pim-switchA
+
+- name: provision Nexus 7k switch B
+  hosts: switchB
+  roles:
+    - pim-switchB
+
+- name: configure eigrp 
+  hosts: Nexus7k
+  roles:
+   - pim-eigrp
+   - pim
+
+- name: provision access switch
+  hosts: catalyst
+  roles:
+    - pim-access-switch

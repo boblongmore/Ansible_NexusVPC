@@ -1,0 +1,11 @@
+---
+
+- name: assign pim to interfaces
+  nxos_config:
+    lines:
+      - ip pim sparse-mode
+    parents: "{{ item }}"
+  loop:
+    - interface Ethernet1/1
+   # - interface Lo1
+   # - interface Lo2

@@ -1,0 +1,36 @@
+---
+
+- name: enable feature vpc
+  nxos_feature:
+    feature: vpc
+    state: enabled
+
+- name: enable feature lacp
+  nxos_feature:
+    feature: lacp
+    state: enabled
+
+- name: enable feature udld
+  nxos_feature:
+    feature: udld
+    state: enabled
+
+- name: enable feature eigrp
+  nxos_feature:
+    feature: eigrp
+    state: enabled
+
+- name: enable feature SVI
+  nxos_feature:
+    feature: interface-vlan
+    state: enabled
+
+- name: enable feature hsrp
+  nxos_feature:
+    feature: hsrp
+    state: enabled
+
+- name: enable feature PIM
+  nxos_feature:
+    feature: pim
+    state: enabled

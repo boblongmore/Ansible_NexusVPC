@@ -1,0 +1,11 @@
+---
+
+- name: assign interface to EIGRP
+  nxos_config:
+    lines:
+      - ip router eigrp 100
+    parents:
+      - "{{ item }}"
+  loop:
+    - interface Vlan10
+    - interface Vlan20

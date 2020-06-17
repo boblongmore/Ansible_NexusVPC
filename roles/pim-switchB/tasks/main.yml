@@ -1,0 +1,6 @@
+---
+
+- include_tasks: msdp-l3.yml
+- include_tasks: downstream-links.yml
+- include_tasks: eigrp-b.yml
+- include_tasks: msdp-pim-b.yml

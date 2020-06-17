@@ -1,0 +1,15 @@
+---
+
+- name: configure downstream interface on 7k B
+  nxos_interface:
+    name: Ethernet1/2
+    mode: layer2
+    admin_state: up
+
+- name: configure vlans on downstream interface
+  nxos_config:
+    lines:
+      - switchport mode trunk
+      - switchport trunk allowed vlan 30
+    parents:
+      - interface Ethernet1/2

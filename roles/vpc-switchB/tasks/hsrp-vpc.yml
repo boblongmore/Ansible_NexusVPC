@@ -1,0 +1,25 @@
+---
+
+- name: configure HSRP on VLAN 10 for Switch A
+  nxos_hsrp:
+    group: 10
+    vip: "{{ vl10_vip }}"
+    priority: 105
+    interface: vlan10
+    preempt: enabled
+
+- name: configure HSRP on VLAN 20 for Switch A
+  nxos_hsrp:
+    group: 20
+    vip: "{{ vl20_vip }}"
+    priority: 105
+    interface: vlan20
+    preempt: enabled
+
+- name: configure HSRP on VLAN 30 for Switch A
+  nxos_hsrp:
+    group: 30
+    vip: "{{ vl30_vip }}"
+    priority: 105
+    interface: vlan30
+    preempt: enabled

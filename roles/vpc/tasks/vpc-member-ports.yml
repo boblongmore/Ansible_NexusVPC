@@ -1,0 +1,22 @@
+---
+
+- name: configure downstream interface
+  nxos_interface:
+    name: Ethernet1/2
+    mode: layer2
+    admin_state: up
+
+- name: configure port-channel 10
+  nxos_config:
+    lines:
+      - switchport
+      - switchport mode trunk
+      - channel-group 10 mode active
+    parents:
+      - interface Ethernet1/2
+  
+
+- name: configure port-channel as VPC
+  nxos_vpc_interface:
+    portchannel: 10
+    vpc: 10

@@ -1,0 +1,31 @@
+---
+
+- name: create EIGRP ASN
+  nxos_config:
+    lines:
+      - router eigrp 100
+
+- name: assign passive interfaces default
+  nxos_config:
+    lines: 
+      - passive-interface default
+    parents: router eigrp 100
+
+- name: assign interface to EIGRP
+  nxos_config:
+    lines:
+      - ip router eigrp 100
+    parents:
+      - "{{ item }}"
+  loop:
+    - interface Vlan10
+    - interface Vlan20
+    - interface Vlan30
+    - interface Loopback1
+
+- name: assign L3 vpc peering to EIGRP
+  nxos_config:
+    lines:
+      - ip router eigrp 100
+      - no ip passive-interface eigrp 100
+    parents: interface Ethernet1/1

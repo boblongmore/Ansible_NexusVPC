@@ -1,0 +1,33 @@
+---
+
+- name: configure msdp loopack interface
+  nxos_interface:
+    name: Loopback2
+    admin_state: up
+
+- name: assign msdp loopback ip address
+  nxos_config:
+    lines:
+      - ip address 192.168.200.2/32
+      - ip router eigrp 100
+    parents:
+      - interface Loopback2
+
+- name: assign pim to interfaces
+  nxos_config:
+    lines:
+      - ip pim sparse-mode
+    parents: "{{ item }}"
+  loop:
+    - interface Vlan30
+    - interface Lo2
+
+- name: configure PIM RP
+  nxos_pim_rp_address:
+    rp_address: 192.168.100.1
+    state: present
+
+#- name: configure msdp peer
+#  nxos_config:
+#    lines:
+#      - ip msdp peer 192.168.200.1 connect-source Loopback2

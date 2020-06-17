@@ -1,0 +1,6 @@
+---
+
+interface:
+  name: 
+    - { int: g2, description: created by ansible, ip: 10.1.1.2, mask: 255.255.255.0}
+    - { int: g1, description: created by ansible, ip: 10.2.1.2, mask: 255.255.255.0}

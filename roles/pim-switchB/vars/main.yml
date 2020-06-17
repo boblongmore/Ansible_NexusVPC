@@ -1,0 +1,2 @@
+#L3 address for inter domain link
+inter_domain_ip: 10.200.1.2/30

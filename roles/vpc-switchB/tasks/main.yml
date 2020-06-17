@@ -1,0 +1,5 @@
+---
+
+  - include_tasks: enable_vpc_domain.yml
+  - include_tasks: l3-vpc.yml
+  - include_tasks: hsrp-vpc.yml

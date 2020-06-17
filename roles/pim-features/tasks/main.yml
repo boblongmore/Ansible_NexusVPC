@@ -1,0 +1,7 @@
+---
+
+- name: enable features for MSDP architecture
+  nxos_feature:
+    feature: "{{ item }}"
+    state: enabled
+  loop: "{{ feature_list }}"
